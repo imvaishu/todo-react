@@ -4,12 +4,12 @@
 }
 
 .done {
-  background-color: rgb(103, 177, 150);
+  background-color: mediumseagreen;
   width: 15px;
 }
 
 .notDone {
-  background-color: rgb(165, 210, 253);
+  background-color:lightblue;
   width: 15px;
 }
 
