@@ -1,8 +1,9 @@
 import React from 'react';
 
 const Task = ({ task, onClick, id }) => {
-  const color = task.isDone ? 'done' : 'notDone';
-  const content = task.isDone ? 'lineThrough content' : 'content';
+  const colors = ['notDone', 'doing', 'done'];
+  const color = colors[task.taskId];
+  const content = task.taskId === 2 ? 'lineThrough content' : 'content';
 
   return (
     <div className="display">

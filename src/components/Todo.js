@@ -13,14 +13,15 @@ class Todo extends React.Component {
 
   createTodoItem(content) {
     this.setState(({ todoList }) => ({
-      todoList: todoList.concat({ content, isDone: false }),
+      todoList: todoList.concat({ content, taskId: 0 }),
     }));
   }
 
   updateTodoStatus(id) {
     this.setState(({ todoList }) => {
       const newList = todoList.map(item => ({ ...item }));
-      newList[id].isDone = !newList[id].isDone;
+      let taskId = newList[id].taskId;
+      newList[id].taskId = ++taskId % 3;
       return { todoList: newList };
     });
   }

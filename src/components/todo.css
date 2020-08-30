@@ -13,6 +13,11 @@
   width: 15px;
 }
 
+.doing {
+  background-color: rgb(243, 131, 91);
+  width: 15px;
+}
+
 .content {
   width: 190px;
   font-size: 18px;
