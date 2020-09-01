@@ -4,7 +4,7 @@ import './todo.css';
 class InputBox extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
+    this.state = { value: this.props.value };
 
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,7 +18,7 @@ class InputBox extends React.Component {
     event.preventDefault();
     const content = this.state.value;
     if (content) {
-      this.props.createTodoItem(content);
+      this.props.onKeyDown(content);
       this.setState({ value: '' });
     }
   }
@@ -27,7 +27,7 @@ class InputBox extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <input
-          className="inputBox"
+          className={this.props.className}
           value={this.state.value}
           onChange={this.onChange}
         />
@@ -35,5 +35,7 @@ class InputBox extends React.Component {
     );
   }
 }
+
+InputBox.defaultProps = { value: '' };
 
 export default InputBox;

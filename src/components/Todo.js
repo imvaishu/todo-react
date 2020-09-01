@@ -1,16 +1,18 @@
 import React from 'react';
 import InputBox from './InputBox';
 import idGenerator from '../idGenerator';
+import Title from './Title';
 import { getDefault, toggleStatus } from '../toggle';
 import Task from './Task';
 
 class Todo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { todoList: [] };
+    this.state = { todoList: [], title: 'Todo' };
     this.generateId = idGenerator();
     this.createTodoItem = this.createTodoItem.bind(this);
     this.updateTodoStatus = this.updateTodoStatus.bind(this);
+    this.updateTitle = this.updateTitle.bind(this);
   }
 
   createTodoItem(content) {
@@ -29,6 +31,11 @@ class Todo extends React.Component {
     this.setState({ todoList: newList });
   }
 
+  updateTitle(title) {
+    console.log(title);
+    this.setState({ title });
+  }
+
   render() {
     const todo = this.state.todoList.map((task, index) => (
       <Task
@@ -41,9 +48,9 @@ class Todo extends React.Component {
 
     return (
       <div>
-        <h1>Todo</h1>
+        <Title title={this.state.title} updateTitle={this.updateTitle} />
         {todo}
-        <InputBox createTodoItem={this.createTodoItem} />
+        <InputBox className='inputBox' onKeyDown={this.createTodoItem} />
       </div>
     );
   }
