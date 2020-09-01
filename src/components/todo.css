@@ -4,18 +4,22 @@
 }
 
 .done {
+  text-decoration: line-through;
+}
+.done > div {
   background-color: mediumseagreen;
-  width: 15px;
 }
-
-.notDone {
-  background-color:lightblue;
-  width: 15px;
-}
-
 .doing {
-  background-color: rgb(243, 131, 91);
-  width: 15px;
+  text-decoration: none;
+}
+.doing > div {
+  background-color: orange;
+}
+.undone {
+  text-decoration: none;
+}
+.undone > div {
+  background-color: lightblue;
 }
 
 .content {
@@ -32,6 +36,6 @@
   margin: 0 auto;
 }
 
-.lineThrough {
-  text-decoration: line-through;
+.display > div {
+  width: 15px;
 }

@@ -1,29 +1,32 @@
 import React from 'react';
 import InputBox from './InputBox';
+import idGenerator from '../idGenerator';
+import { getDefault, toggleStatus } from '../toggle';
 import Task from './Task';
 
 class Todo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { todoList: [] };
-
+    this.generateId = idGenerator();
     this.createTodoItem = this.createTodoItem.bind(this);
     this.updateTodoStatus = this.updateTodoStatus.bind(this);
   }
 
   createTodoItem(content) {
-    this.setState(({ todoList }) => ({
-      todoList: todoList.concat({ content, taskId: 0 }),
-    }));
+    const newList = [...this.state.todoList];
+    newList.push({ content, status: getDefault(), id: this.generateId() });
+    this.setState({ todoList: newList });
   }
 
   updateTodoStatus(id) {
-    this.setState(({ todoList }) => {
-      const newList = todoList.map(item => ({ ...item }));
-      let taskId = newList[id].taskId;
-      newList[id].taskId = ++taskId % 3;
-      return { todoList: newList };
+    const newList = [...this.state.todoList];
+    newList.forEach(task => {
+      if (task.id === id) {
+        task.status = toggleStatus(task.status);
+      }
     });
+    this.setState({ todoList: newList });
   }
 
   render() {

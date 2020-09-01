@@ -1,13 +1,11 @@
 import React from 'react';
 
 const Task = ({ task, onClick, id }) => {
-  const colors = ['notDone', 'doing', 'done'];
-  const content = task.taskId === 2 ? 'lineThrough content' : 'content';
-
+  const classes = `display ${task.status}`;
   return (
-    <div className="display">
-      <span className={colors[task.taskId]}></span>
-      <span className={content} onClick={() => onClick(id)}>
+    <div className={classes}>
+      <div></div>
+      <span className='content' onClick={() => onClick(id)}>
         {task.content}
       </span>
     </div>
