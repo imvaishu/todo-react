@@ -24,16 +24,12 @@ class Todo extends React.Component {
 
   updateTodoStatus(id) {
     const newList = [...this.state.todoList];
-    newList.forEach(task => {
-      if (task.id === id) {
-        task.status = toggleStatus(task.status);
-      }
-    });
+    const taskId = newList.findIndex(task => task.id === id);
+    newList[taskId].status = toggleStatus(newList[taskId].status);
     this.setState({ todoList: newList });
   }
 
   updateTitle(title) {
-    console.log(title);
     this.setState({ title });
   }
 
@@ -43,7 +39,7 @@ class Todo extends React.Component {
   }
 
   render() {
-    const todo = this.state.todoList.map((task) => (
+    const todo = this.state.todoList.map(task => (
       <Task
         task={task}
         key={task.id}

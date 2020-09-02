@@ -1,4 +1,5 @@
 import React from 'react';
+import RemoveItem from './RemoveItem';
 
 const Task = ({ task, onClick, handleRemove }) => {
   const classes = `display ${task.status}`;
@@ -9,9 +10,7 @@ const Task = ({ task, onClick, handleRemove }) => {
         <span className="content" onClick={() => onClick(task.id)}>
           {task.content}
         </span>
-        <div className="remove" onClick={() => handleRemove(task.id)}>
-          X
-        </div>
+        <RemoveItem handleRemove={()=>handleRemove(task.id)} />
       </div>
     </div>
   );

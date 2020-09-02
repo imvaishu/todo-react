@@ -11,18 +11,23 @@
 .done > span {
   text-decoration: line-through;
 }
+
 .done :first-child {
   background-color: mediumseagreen;
 }
+
 .doing {
   text-decoration: none;
 }
+
 .doing :first-child {
   background-color: orange;
 }
+
 .undone {
   text-decoration: none;
 }
+
 .undone :first-child {
   background-color: lightblue;
 }
@@ -57,7 +62,6 @@
 .remove {
   cursor: pointer;
   visibility: hidden;
-  background: none;
   margin-top: 5px;
 }
 
