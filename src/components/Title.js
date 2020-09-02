@@ -1,5 +1,6 @@
 import React from 'react';
 import InputBox from './InputBox';
+import RemoveItem from './RemoveItem';
 
 class Title extends React.Component {
   constructor(props) {
@@ -19,7 +20,12 @@ class Title extends React.Component {
   }
 
   render() {
-    let title = <h1 onClick={this.handleClick}>{this.props.title}</h1>;
+    let title = (
+      <div className='todo-box'>
+        <span className="display heading" onClick={this.handleClick}>{this.props.title}</span>
+        <RemoveItem handleRemove={this.props.removeTodo} />
+      </div>
+    );
 
     if (this.state.modifiable) {
       title = (

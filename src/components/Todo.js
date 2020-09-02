@@ -14,6 +14,7 @@ class Todo extends React.Component {
     this.updateTodoStatus = this.updateTodoStatus.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
   }
 
   createTodoItem(content) {
@@ -38,6 +39,10 @@ class Todo extends React.Component {
     this.setState({ todoList: newList });
   }
 
+  removeTodo() {
+    this.setState({ todoList: [], title: 'Todo' });
+  }
+
   render() {
     const todo = this.state.todoList.map(task => (
       <Task
@@ -50,7 +55,7 @@ class Todo extends React.Component {
 
     return (
       <div>
-        <Title title={this.state.title} updateTitle={this.updateTitle} />
+        <Title title={this.state.title} updateTitle={this.updateTitle} removeTodo={this.removeTodo}/>
         {todo}
         <InputBox className="inputBox" onKeyDown={this.createTodoItem} />
       </div>

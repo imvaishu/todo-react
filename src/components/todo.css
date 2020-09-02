@@ -52,11 +52,23 @@
 
 .title {
   display: block;
-  font-size: 2em;
+  font-size: 1.5em;
+  width: 200px;
   margin-block-start: 0.67em;
   margin-block-end: 0.67em;
-  margin-left: 36%;
-  font-weight: bold;
+  margin-left: 42.6%;
+}
+
+.todo-box {
+  padding-bottom: 10px;
+  width: 200px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.heading {
+  font-size: 1.5em;
 }
 
 .remove {
@@ -66,5 +78,9 @@
 }
 
 .item:hover .remove {
+  visibility: visible;
+}
+
+.todo-box:hover .remove {
   visibility: visible;
 }
