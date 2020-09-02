@@ -3,22 +3,27 @@
   height: 20px;
 }
 
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+
 .done {
   text-decoration: line-through;
 }
-.done > div {
+.done :first-child {
   background-color: mediumseagreen;
 }
 .doing {
   text-decoration: none;
 }
-.doing > div {
+.doing :first-child {
   background-color: orange;
 }
 .undone {
   text-decoration: none;
 }
-.undone > div {
+.undone :first-child {
   background-color: lightblue;
 }
 
@@ -36,7 +41,7 @@
   margin: 0 auto;
 }
 
-.display > div {
+.display :first-child {
   width: 15px;
 }
 
@@ -46,5 +51,16 @@
   margin-block-start: 0.67em;
   margin-block-end: 0.67em;
   margin-left: 36%;
-  font-weight: bold
+  font-weight: bold;
+}
+
+.remove {
+  cursor: pointer;
+  visibility: hidden;
+  background: none;
+  margin-top: 5px;
+}
+
+.item:hover .remove {
+  visibility: visible;
 }
