@@ -8,7 +8,7 @@
   justify-content: space-between;
 }
 
-.done {
+.done > span {
   text-decoration: line-through;
 }
 .done :first-child {
