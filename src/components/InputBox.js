@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const InputBox = function (props) {
   const [value, setValue] = useState(props.value);
 
-  const onChange = event => setValue(event.target.value);
+  const onChange = (event) => setValue(event.target.value);
 
   const handleSubmit = function (event) {
     event.preventDefault();

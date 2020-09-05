@@ -1,43 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputBox from './InputBox';
 import RemoveItem from './RemoveItem';
 
-class Title extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { modifiable: false };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleKeydown = this.handleKeydown.bind(this);
-  }
+const Title = function (props) {
+  const [modifiable, setModifiable] = useState(false);
 
-  handleClick() {
-    this.setState({ modifiable: true });
-  }
+  const onChange = () => setModifiable(true);
 
-  handleKeydown(title) {
-    this.setState({ modifiable: false });
-    this.props.updateTitle(title);
-  }
+  const handleSubmit = function (title) {
+    setModifiable(false);
+    props.updateTitle(title);
+  };
 
-  render() {
-    let title = (
-      <div className='todo-box'>
-        <span className="display heading" onClick={this.handleClick}>{this.props.title}</span>
-        <RemoveItem handleRemove={this.props.removeTodo} />
-      </div>
+  let title = (
+    <div className="todo-box">
+      <span className="display heading" onClick={onChange}>
+        {props.title}
+      </span>
+      <RemoveItem handleRemove={props.removeTodo} />
+    </div>
+  );
+
+  if (modifiable) {
+    title = (
+      <InputBox value={props.title} onSubmit={handleSubmit} className="title" />
     );
-
-    if (this.state.modifiable) {
-      title = (
-        <InputBox
-          value={this.props.title}
-          onSubmit={this.handleKeydown}
-          className="title"
-        />
-      );
-    }
-    return title;
   }
-}
+  return title;
+};
 
 export default Title;
