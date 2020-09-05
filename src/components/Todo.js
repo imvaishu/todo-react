@@ -4,6 +4,7 @@ import idGenerator from '../idGenerator';
 import Title from './Title';
 import { getDefault, toggleStatus } from '../toggle';
 import Task from './Task';
+import './todo.css';
 
 class Todo extends React.Component {
   constructor(props) {
@@ -57,7 +58,7 @@ class Todo extends React.Component {
       <div>
         <Title title={this.state.title} updateTitle={this.updateTitle} removeTodo={this.removeTodo}/>
         {todo}
-        <InputBox className="inputBox" onKeyDown={this.createTodoItem} />
+        <InputBox className="inputBox" onSubmit={this.createTodoItem} />
       </div>
     );
   }

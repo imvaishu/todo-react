@@ -1,40 +1,24 @@
-import React from 'react';
-import './todo.css';
+import React, { useState } from 'react';
 
-class InputBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: this.props.value };
+const InputBox = function (props) {
+  const [value, setValue] = useState(props.value);
 
-    this.onChange = this.onChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  const onChange = event => setValue(event.target.value);
 
-  onChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  handleSubmit(event) {
+  const handleSubmit = function (event) {
     event.preventDefault();
-    const content = this.state.value;
-    if (content) {
-      this.props.onKeyDown(content);
-      this.setState({ value: '' });
+    if (value) {
+      props.onSubmit(value);
+      setValue('');
     }
-  }
+  };
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          className={this.props.className}
-          value={this.state.value}
-          onChange={this.onChange}
-        />
-      </form>
-    );
-  }
-}
+  return (
+    <form onSubmit={handleSubmit}>
+      <input className={props.className} value={value} onChange={onChange} />
+    </form>
+  );
+};
 
 InputBox.defaultProps = { value: '' };
 

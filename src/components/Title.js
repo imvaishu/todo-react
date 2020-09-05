@@ -31,7 +31,7 @@ class Title extends React.Component {
       title = (
         <InputBox
           value={this.props.title}
-          onKeyDown={this.handleKeydown}
+          onSubmit={this.handleKeydown}
           className="title"
         />
       );
