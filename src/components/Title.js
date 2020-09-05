@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import InputBox from './InputBox';
-import RemoveItem from './RemoveItem';
 
 const Title = function (props) {
   const [modifiable, setModifiable] = useState(false);
@@ -17,7 +16,6 @@ const Title = function (props) {
       <span className="display heading" onClick={onChange}>
         {props.title}
       </span>
-      <RemoveItem handleRemove={props.removeTodo} />
     </div>
   );
 
