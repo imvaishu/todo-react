@@ -2,7 +2,6 @@ import React from 'react';
 
 const WithDelete = function (Component) {
   return function (props) {
-    console.log(Component);
     return (
       <div className="item">
         <Component {...props} />

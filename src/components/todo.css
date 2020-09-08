@@ -1,86 +1,48 @@
-.inputBox {
+input {
+  height: 28px;
   width: 200px;
-  height: 20px;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
 .item {
   display: flex;
   justify-content: space-between;
+  width: 200px;
 }
 
-.done > span {
+.done {
+  border-left: 10px solid mediumseagreen;
   text-decoration: line-through;
 }
 
-.done :first-child {
-  background-color: mediumseagreen;
-}
-
 .doing {
-  text-decoration: none;
-}
-
-.doing :first-child {
-  background-color: orange;
+  border-left: 10px solid orange;
 }
 
 .undone {
-  text-decoration: none;
-}
-
-.undone :first-child {
-  background-color: lightblue;
-}
-
-.content {
-  width: 190px;
-  font-size: 18px;
-  cursor: pointer;
-  overflow: scroll;
-}
-
-.display {
-  padding-bottom: 10px;
-  width: 200px;
-  display: flex;
-  margin: 0 auto;
-}
-
-.display :first-child {
-  width: 15px;
-}
-
-.title {
-  display: block;
-  font-size: 1.5em;
-  width: 200px;
-  margin-block-start: 0.67em;
-  margin-block-end: 0.67em;
-  margin-left: 42.6%;
+  border-left: 10px solid lightblue;
 }
 
 .todo-box {
-  padding-bottom: 10px;
-  width: 200px;
-  display: flex;
-  margin: 0 auto;
-  justify-content: center;
+  padding-left: 40px;
+  cursor: pointer;
 }
 
 .heading {
-  font-size: 1.5em;
+  font-weight: 600;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .remove {
   cursor: pointer;
-  visibility: hidden;
-  margin-top: 5px;
+  display: none;
+  margin-top: 15px;
+  opacity: 0.5;
 }
 
 .item:hover .remove {
-  visibility: visible;
-}
-
-.todo-box:hover .remove {
-  visibility: visible;
+  display: block;
 }

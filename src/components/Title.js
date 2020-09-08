@@ -12,17 +12,11 @@ const Title = function (props) {
   };
 
   let title = (
-    <div className="todo-box">
-      <span className="display heading" onClick={onChange}>
-        {props.title}
-      </span>
-    </div>
+    <p className="heading" onClick={onChange}> {props.title} </p>
   );
 
   if (modifiable) {
-    title = (
-      <InputBox value={props.title} onSubmit={handleSubmit} className="title" />
-    );
+    title = ( <InputBox value={props.title} onSubmit={handleSubmit}/> );
   }
   return title;
 };

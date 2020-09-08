@@ -43,9 +43,7 @@ const Todo = function (props) {
 
   return (
     <div>
-      <TitleWithDelete title={title} updateTitle={setTitle} handleRemove={setAll} />
-      {todo}
-      <InputBox className="inputBox" onSubmit={createTodoItem} />
+      <TitleWithDelete title={title} updateTitle={setTitle} handleRemove={setAll} /> {todo} <InputBox onSubmit={createTodoItem} />
     </div>
   );
 };
