@@ -10,6 +10,8 @@ const toggle = {
 
 const getDefault = () => UNDONE;
 
-const toggleStatus = currentStatus => toggle[currentStatus];
+const toggleStatus = function (currentStatus) {
+  return toggle[currentStatus];
+};
 
-export { getDefault, toggleStatus };
+module.exports = { getDefault, toggleStatus };

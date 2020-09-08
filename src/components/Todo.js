@@ -1,49 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputBox from './InputBox';
 import Title from './Title';
-import { getDefault, toggleStatus } from '../toggle';
 import Task from './Task';
 import './todo.css';
+import TodoApi from './todoApi';
 import WithDelete from './withDelete';
 
 const TaskWithDelete = WithDelete(Task);
 const TitleWithDelete = WithDelete(Title);
 
-const Todo = function (props) {
-  const [todoList, setTodoList] = useState([]);
+const Todo = function () {
+  const [todo, setTodo] = useState([]);
   const [title, setTitle] = useState('Todo');
-  let [lastIndex, setLastIndex] = useState(0);
+
+  useEffect(() => {
+    TodoApi.getTodoList().then(({ title, todo }) => {
+      setTitle(title);
+      setTodo(todo);
+    });
+  }, []);
 
   const setAll = () => {
-    setTodoList([]);
-    setTitle('Todo');
-    setLastIndex(0);
+    TodoApi.deleteTodoList().then(({ title, todo }) => {
+      setTitle(title);
+      setTodo(todo);
+    });
   };
 
-  const createTodoItem = function (content) {
-    setTodoList([ ...todoList, { content, id: lastIndex, status: getDefault() }, ]);
-    setLastIndex(lastIndex => lastIndex + 1);
+  const createTodoItem = (content) => {
+    TodoApi.createTodoItem(content).then((todo) => setTodo(todo));
   };
 
-  const updateTodoStatus = function (id) {
-    const newList = [...todoList];
-    const index = newList.findIndex(task => task.id === id);
-    newList[index].status = toggleStatus(newList[index].status);
-    setTodoList(newList);
+  const updateTodoStatus = (id) => {
+    TodoApi.updateTodoStatus(id).then((todo) => setTodo(todo));
+  };
+
+  const updateTitle = (title) => {
+    TodoApi.updateTitle(title).then(setTitle);
   };
 
   const handleRemove = function (task) {
-    const newList = todoList.filter(t => t.id !== task.id);
-    setTodoList(newList);
+    TodoApi.deleteTodo(task.id).then(setTodo);
   };
 
-  const todo = todoList.map(task => (
+  const todoList = todo.map((task) => (
     <TaskWithDelete task={task} key={task.id} onClick={updateTodoStatus} handleRemove={handleRemove} />
   ));
 
   return (
     <div>
-      <TitleWithDelete title={title} updateTitle={setTitle} handleRemove={setAll} /> {todo} <InputBox onSubmit={createTodoItem} />
+      <TitleWithDelete title={title} updateTitle={updateTitle} handleRemove={setAll} />
+      {todoList}
+      <InputBox onSubmit={createTodoItem} />
     </div>
   );
 };
