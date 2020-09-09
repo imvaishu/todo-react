@@ -1,10 +1,9 @@
 import React from 'react';
-import './App.css';
 import Todo from './components/Todo';
 
 function App() {
   return (
-    <div className="App">
+    <div style={{ display: 'flex', justifyContent: 'center', fontFamily: 'sans-serif', }} >
       <Todo />
     </div>
   );
