@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+
 const {
   getTodoList,
   createTodoItem,
@@ -9,6 +10,7 @@ const {
   updateTodoStatus,
   deleteTodo,
 } = require('./handlers');
+
 const { getDefault } = require('./toggle');
 
 app.locals.TodoList = {
@@ -17,7 +19,11 @@ app.locals.TodoList = {
   lastId: 0,
 };
 
+app.use(express.static('build'));
+
 app.use(bodyParser.json());
+
+app.get('/', (req, res) => { res.sendFile('index.html'); });
 
 app.get('/api/getTodoList', getTodoList);
 
@@ -31,4 +37,4 @@ app.post('/api/updateTitle', updateTitle);
 
 app.get('/api/deleteTodoList', deleteTodoList);
 
-app.listen(8000, () => console.log('listening on 8000'));
+module.exports = { app };
