@@ -9,6 +9,13 @@ const {
   updateTodoStatus,
   deleteTodo,
 } = require('./handlers');
+const { getDefault } = require('./toggle');
+
+app.locals.TodoList = {
+  title: 'Todo',
+  todo: [{ content: 'hello', status: getDefault(), id: 0 }],
+  lastId: 0,
+};
 
 app.use(bodyParser.json());
 
