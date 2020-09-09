@@ -1,4 +1,4 @@
-const { getDefault, toggleStatus } = require('../src/components/toggle');
+const { getDefault, toggleStatus } = require('./toggle');
 
 let index = { lastId: 0 };
 

@@ -28,11 +28,11 @@ const Todo = function () {
   };
 
   const createTodoItem = (content) => {
-    TodoApi.createTodoItem(content).then((todo) => setTodo(todo));
+    TodoApi.createTodoItem(content).then(setTodo);
   };
 
   const updateTodoStatus = (id) => {
-    TodoApi.updateTodoStatus(id).then((todo) => setTodo(todo));
+    TodoApi.updateTodoStatus(id).then(setTodo);
   };
 
   const updateTitle = (title) => {
