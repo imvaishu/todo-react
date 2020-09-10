@@ -1,8 +1,13 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const { RedisClient } = require('./redisClient');
+
+const redis = require('redis');
+const client = redis.createClient();
 
 const {
+  initializeTodoList,
   getTodoList,
   createTodoItem,
   deleteTodoList,
@@ -11,19 +16,17 @@ const {
   deleteTodo,
 } = require('./handlers');
 
-const { getDefault } = require('./toggle');
-
-app.locals.TodoList = {
-  title: 'Todo',
-  todo: [{ content: 'hello', status: getDefault(), id: 0 }],
-  lastId: 0,
-};
+app.locals.db = new RedisClient(client);
 
 app.use(express.static('build'));
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => { res.sendFile('index.html'); });
+app.use(initializeTodoList);
+
+app.get('/', (req, res) => {
+  res.sendFile('index.html');
+});
 
 app.get('/api/getTodoList', getTodoList);
 
