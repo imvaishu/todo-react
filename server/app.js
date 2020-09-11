@@ -4,7 +4,15 @@ const bodyParser = require('body-parser');
 const { RedisClient } = require('./redisClient');
 
 const redis = require('redis');
-const client = redis.createClient();
+
+const getRedisClient = function () {
+  if (process.env.REDISCLOUD_URL) {
+    return redis.createClient(process.env.REDISCLOUD_URL, {
+      no_ready_check: true,
+    });
+  }
+  return redis.createClient();
+};
 
 const {
   initializeTodoList,
@@ -16,7 +24,7 @@ const {
   deleteTodo,
 } = require('./handlers');
 
-app.locals.db = new RedisClient(client);
+app.locals.db = new RedisClient(getRedisClient());
 
 app.use(express.static('build'));
 
